@@ -7,6 +7,10 @@ If you want to remove, install and update node and npm automaticly run the comma
 
 	$ /bin/bash node.sh
 
+If you only want to install node and npm:
+
+        $ /bin/bash node.sh --install
+
 To remove node and npm:
 
 	$ /bin/bash node.sh --remove
@@ -14,4 +18,3 @@ To remove node and npm:
 And if you only want to update:
 
 	$ /bin/bash node.sh --update
-
