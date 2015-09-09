@@ -1,5 +1,5 @@
 # A node and npm installer
-This is a installer for node and npm with remove, install and update functions
+This is an installer for node and npm with remove, install and update functions
 
 # Usage
 
