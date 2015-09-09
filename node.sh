@@ -10,7 +10,6 @@ function nodeversion {
 function nodeinstall {
 
 	TMP_FOLDER='_node'
-	OS='unknown'
 	UNAME_STR=`uname`
 
 	if [[ "$UNAME_STR" == 'Linux' ]]; then
