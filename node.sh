@@ -34,11 +34,11 @@ function nodeinstall {
 
 	        if [[ ! -z "$ARCH_VALUE" ]]; then
 	                # getting latest node
-	                NODE_URL=`curl -vs http://nodejs.org/dist/latest/ 2>&1 | sed -r -e 's/.*href="([^"#]+)".*/\1/' |grep linux-x$ARCH_VALUE`
+	                NODE_URL=`curl -vs http://nodejs.org/dist/latest/ 2>&1 | sed -r -e 's/.*href="([^"#]+)".*/\1/' | grep linux-x$ARCH_VALUE.tar.gz`
 
 		        # downloading
 		        DOWNLOAD_URL=http://nodejs.org/dist/latest/$NODE_URL
-		        curl -o $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1
+		        echo `curl -o $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
 
 		        # installing
 		        USER=$(whoami); sudo chown -R $USER /usr/local
@@ -46,7 +46,7 @@ function nodeinstall {
 		        cp -r ./$TMP_FOLDER/include/node /usr/local/include/
 		        mkdir -p /usr/local/man/man1
 		        cp ./$TMP_FOLDER/share/man/man1/node.1 /usr/local/man/man1/node.1
-		        cp ./$TMP_FOLDER/bin/node /usr/local/bin/
+		        cp ./$TMP_FOLDER/bin/node /usr/local/bin/node
 		        ln -s "/usr/local/lib/node_modules/npm/bin/npm-cli.js" /usr/local/bin/npm
 
 		        # cleaning up
