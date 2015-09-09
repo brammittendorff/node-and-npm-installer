@@ -72,10 +72,16 @@ function noderemove {
 }
 
 function nodeupdate {
-	npm install -g npm
-	npm cache clean -f
-	npm install -g n
-	n stable
+	if [[ -f /usr/local/bin/npm && -f /usr/local/bin/node ]]; then
+		echo "Updating node and npm..."
+		npm install -g npm
+		npm cache clean -f
+		npm install -g n
+		n stable
+		nodeversion
+	else
+		echo "You can't update npm and node because you did not install them"
+	fi
 }
 
 ARGS=("$@")
@@ -85,9 +91,7 @@ if [[ "${ARGS[0]}" = "--install" ]]; then
 	nodeinstall
 	nodeversion
 elif [[ "${ARGS[0]}" = "--update" ]]; then
-	echo "Updating node and npm..."
 	nodeupdate
-	nodeversion
 elif [[ "${ARGS[0]}" = "--remove" ]]; then
 	echo "Removing node and npm..."
 	noderemove
@@ -95,5 +99,4 @@ else
 	noderemove
 	nodeinstall
 	nodeupdate
-	nodeversion
 fi
