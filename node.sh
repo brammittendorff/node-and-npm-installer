@@ -62,13 +62,13 @@ function nodeinstall {
 }
 
 function noderemove {
-	rm -rf /usr/local/bin/npm
-	rm -rf /usr/local/bin/node
-	rm -rf /usr/local/lib/node_modules/
-	rm -rf /usr/local/include/node/
-	rm -rf /usr/local/man/man*/node*
-	rm -rf /usr/local/man/man*/npm*
-	rm -rf /usr/local/bin/_node/
+	sudo rm -rf /usr/local/bin/npm
+	sudo rm -rf /usr/local/bin/node
+	sudo rm -rf /usr/local/lib/node_modules/
+	sudo rm -rf /usr/local/include/node/
+	sudo rm -rf /usr/local/man/man*/node*
+	sudo rm -rf /usr/local/man/man*/npm*
+	sudo rm -rf /usr/local/bin/_node/
 }
 
 function nodeupdate {
