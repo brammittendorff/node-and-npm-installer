@@ -22,10 +22,13 @@ function nodeinstall {
 
 	        ARCH=`getconf LONG_BIT`
 
-	        if [[ "$ARCH" = "32" ]]; then
+	        if [[ "$ARCH" == "32" ]]; then
 	                ARCH_VALUE='86'
-	        elif [[ "$ARCH" = "64" ]]; then
+	        elif [[ "$ARCH" == "64" ]]; then
 	                ARCH_VALUE='64'
+		elif [[ "$OS" == "darwin" ]]; then
+			# for darwin (mac os x) there is only a 64 bit version
+			ARCH_VALUE='64'
 	        fi
 
 	        if [[ ! -z "$ARCH_VALUE" ]]; then
