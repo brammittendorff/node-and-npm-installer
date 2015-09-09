@@ -72,8 +72,6 @@ function noderemove {
 }
 
 function nodeupdate {
-	noderemove
-	nodeinstall
 	npm install -g npm
 	npm cache clean -f
 	npm install -g n
@@ -94,6 +92,8 @@ elif [[ "${ARGS[0]}" = "--remove" ]]; then
 	echo "Removing node and npm..."
 	noderemove
 else
+	noderemove
+	nodeinstall
 	nodeupdate
 	nodeversion
 fi
