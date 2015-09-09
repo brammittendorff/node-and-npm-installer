@@ -53,7 +53,7 @@ function nodeinstall {
 		        rm -rf $TMP_FOLDER
 		        rm -rf $NODE_URL
 		else
-		                echo "We could not determine your ARCH value try changing ARCH=`getconf LONG_BIT`"
+			echo "We could not determine your ARCH value try changing ARCH=`getconf LONG_BIT`"
 		fi
 
 	else
