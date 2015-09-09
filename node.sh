@@ -16,13 +16,10 @@ function nodeinstall {
 	if [[ "$UNAME_STR" == 'Linux' ]]; then
 	        OS='linux'
 	elif [[ "$UNAME_STR" == 'Darwin' ]]; then
-	        # soon for mac to
-	        OS='mac'
-	else
-	        OS='other os'
+	        OS='darwin'
 	fi
 
-	if [[ "$OS" = "linux"  ]]; then
+	if [[ ! -z "$OS" ]]; then
 
 	        ARCH=`getconf LONG_BIT`
 
@@ -34,7 +31,7 @@ function nodeinstall {
 
 	        if [[ ! -z "$ARCH_VALUE" ]]; then
 	                # getting latest node
-	                NODE_URL=`curl -vs http://nodejs.org/dist/latest/ 2>&1 | sed -r -e 's/.*href="([^"#]+)".*/\1/' | grep linux-x$ARCH_VALUE.tar.gz`
+	                NODE_URL=`curl -vs http://nodejs.org/dist/latest/ 2>&1 | sed -r -e 's/.*href="([^"#]+)".*/\1/' | grep $OS-x$ARCH_VALUE.tar.gz`
 
 		        # downloading
 		        DOWNLOAD_URL=http://nodejs.org/dist/latest/$NODE_URL
