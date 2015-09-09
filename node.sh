@@ -66,7 +66,8 @@ function noderemove {
 	sudo rm -rf /usr/local/bin/node
 	sudo rm -rf /usr/local/lib/node_modules/
 	sudo rm -rf /usr/local/include/node/
-	sudo rm -rf /usr/local/man/man1/node.1
+	sudo rm -rf /usr/local/man/man*/node*
+	sudo rm -rf /usr/local/man/man*/npm*
 	sudo rm -rf /usr/local/bin/_node/
 }
 
