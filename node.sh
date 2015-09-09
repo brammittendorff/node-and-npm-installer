@@ -47,7 +47,7 @@ function nodeinstall {
 		        mkdir -p /usr/local/man/man1
 		        cp ./$TMP_FOLDER/share/man/man1/node.1 /usr/local/man/man1/node.1
 		        cp ./$TMP_FOLDER/bin/node /usr/local/bin/node
-		        ln -s "/usr/local/lib/node_modules/npm/bin/npm-cli.js" /usr/local/bin/npm
+		        ln -sf "/usr/local/lib/node_modules/npm/bin/npm-cli.js" /usr/local/bin/npm
 
 		        # cleaning up
 		        rm -rf $TMP_FOLDER
