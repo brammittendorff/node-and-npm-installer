@@ -33,17 +33,16 @@ function nodeinstall {
 
 	        if [[ ! -z "$ARCH_VALUE" ]]; then
 	                # getting latest node
-	                NODE_URL=`curl -vs http://nodejs.org/dist/latest/ | sed -E 
-'s/.*href="([^"#]+)".*/\1/' | grep $OS-x$ARCH_VALUE.tar.gz`
+	                NODE_URL=`curl -vs http://nodejs.org/dist/latest/ | sed -E 's/.*href="([^"#]+)".*/\1/' | grep $OS-x$ARCH_VALUE.tar.gz`
 
 		        # downloading
 		        DOWNLOAD_URL=http://nodejs.org/dist/latest/$NODE_URL
-		        echo `curl -o $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
+			echo `curl -o $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
 
 		        # installing
 		        USER=$(whoami); sudo chown -R $USER /usr/local
-		        cp -r ./$TMP_FOLDER/lib/node_modules/ /usr/local/lib/
-		        cp -r ./$TMP_FOLDER/include/node /usr/local/include/
+		        cp -R ./$TMP_FOLDER/lib/node_modules /usr/local/lib/node_modules
+		        cp -R ./$TMP_FOLDER/include/node /usr/local/include/node
 		        mkdir -p /usr/local/man/man1
 		        cp ./$TMP_FOLDER/share/man/man1/node.1 /usr/local/man/man1/node.1
 		        cp ./$TMP_FOLDER/bin/node /usr/local/bin/node
@@ -63,13 +62,13 @@ function nodeinstall {
 }
 
 function noderemove {
-	sudo rm -rf /usr/local/bin/npm
-	sudo rm -rf /usr/local/bin/node
-	sudo rm -rf /usr/local/lib/node_modules/
-	sudo rm -rf /usr/local/include/node/
-	sudo rm -rf /usr/local/man/man*/node*
-	sudo rm -rf /usr/local/man/man*/npm*
-	sudo rm -rf /usr/local/bin/_node/
+	rm -rf /usr/local/bin/npm
+	rm -rf /usr/local/bin/node
+	rm -rf /usr/local/lib/node_modules/
+	rm -rf /usr/local/include/node/
+	rm -rf /usr/local/man/man*/node*
+	rm -rf /usr/local/man/man*/npm*
+	rm -rf /usr/local/bin/_node/
 }
 
 function nodeupdate {
