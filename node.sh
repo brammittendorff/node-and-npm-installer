@@ -18,7 +18,7 @@ function nodeinstall {
 
 	if [[ ! -z "$OS" ]]; then
 
-	        ARCH=`getconf LONG_BIT`
+	        ARCH=$(getconf LONG_BIT)
 
 	        if [[ "$ARCH" == "32" ]]; then
 	                ARCH_VALUE='86'
@@ -85,16 +85,16 @@ function nodeupdate {
 
 ARGS=("$@")
 
-if [[ "${ARGS[0]}" = "--install" ]]; then
+if [[ "${ARGS[0]}" == "--install" ]]; then
 	echo "Installing latest Node and npm..."
 	nodeinstall
 	nodeversion
-elif [[ "${ARGS[0]}" = "--update" ]]; then
+elif [[ "${ARGS[0]}" == "--update" ]]; then
 	nodeupdate
-elif [[ "${ARGS[0]}" = "--remove" ]]; then
+elif [[ "${ARGS[0]}" == "--remove" ]]; then
 	echo "Removing node and npm..."
 	noderemove
-elif [[ "${ARGS[0]}" = "--version" ]]; then
+elif [[ "${ARGS[0]}" == "--version" ]]; then
 	nodeversion
 else
 	noderemove

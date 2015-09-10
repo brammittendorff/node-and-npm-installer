@@ -25,3 +25,7 @@ To remove node and npm:
 And if you only want to update:
 
 	$ /bin/bash node.sh --update
+
+To get the version use:
+
+        $ /bin/bash node.sh --version
