@@ -28,4 +28,4 @@ And if you only want to update:
 
 To get the version use:
 
-        $ /bin/bash node.sh --version
+	$ /bin/bash node.sh --version
