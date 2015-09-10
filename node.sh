@@ -33,10 +33,10 @@ function nodeinstall {
 
 	        if [[ ! -z "$ARCH_VALUE" ]]; then
 	                # getting latest node
-	                NODE_URL=`curl -vs http://nodejs.org/dist/latest/ | sed -E 's/.*href="([^"#]+)".*/\1/' | grep $OS-x$ARCH_VALUE.tar.gz`
+	                NODE_URL=`curl -vs https://nodejs.org/dist/latest/ | sed -E 's/.*href="([^"#]+)".*/\1/' | grep $OS-x$ARCH_VALUE.tar.gz`
 
 		        # downloading
-		        DOWNLOAD_URL=http://nodejs.org/dist/latest/$NODE_URL
+		        DOWNLOAD_URL=https://nodejs.org/dist/latest/$NODE_URL
 			echo `curl -o $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
 
 		        # installing
