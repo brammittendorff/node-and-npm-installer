@@ -35,7 +35,7 @@ function nodeinstall {
 
 		        # downloading
 		        DOWNLOAD_URL=https://nodejs.org/dist/latest/$NODE_URL
-			echo `curl -oL $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
+			echo `curl -Lo $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
 
 		        # installing
 		        USER=$(whoami); 
