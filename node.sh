@@ -95,6 +95,8 @@ elif [[ "${ARGS[0]}" = "--update" ]]; then
 elif [[ "${ARGS[0]}" = "--remove" ]]; then
 	echo "Removing node and npm..."
 	noderemove
+elif [[ "${ARGS[0]}" = "--version" ]]; then
+	nodeversion
 else
 	noderemove
 	nodeinstall
