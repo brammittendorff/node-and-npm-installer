@@ -1,16 +1,14 @@
 #! /bin/bash
 
 function nodeversion {
-        node=`node -v`
-        npm=`npm -v`
-        echo "Node version: $node"
-	echo "Npm version: $npm"
+        echo "Node version: $(node -v)"
+	echo "Npm version: $(npm -v)"
 }
 
 function nodeinstall {
 
 	TMP_FOLDER='_node'
-	UNAME_STR=`uname`
+	UNAME_STR=$(uname)
 
 	if [[ "$UNAME_STR" == 'Linux' ]]; then
 	        OS='linux'
@@ -33,14 +31,15 @@ function nodeinstall {
 
 	        if [[ ! -z "$ARCH_VALUE" ]]; then
 	                # getting latest node
-	                NODE_URL=`curl -vs https://nodejs.org/dist/latest/ | sed -E 's/.*href="([^"#]+)".*/\1/' | grep $OS-x$ARCH_VALUE.tar.gz`
+	                NODE_URL=$(curl -vsL https://nodejs.org/dist/latest/ | sed -E 's/.*href="([^"#]+)".*/\1/' | grep $OS-x$ARCH_VALUE.tar.gz)
 
 		        # downloading
 		        DOWNLOAD_URL=https://nodejs.org/dist/latest/$NODE_URL
-			echo `curl -o $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
+			echo `curl -oL $NODE_URL $DOWNLOAD_URL && mkdir $TMP_FOLDER && tar xf $NODE_URL -C $TMP_FOLDER --strip-components=1`
 
 		        # installing
-		        USER=$(whoami); sudo chown -R $USER /usr/local
+		        USER=$(whoami); 
+		        sudo chown -R $USER /usr/local
 		        cp -R ./$TMP_FOLDER/lib/node_modules /usr/local/lib/node_modules
 		        cp -R ./$TMP_FOLDER/include/node /usr/local/include/node
 		        mkdir -p /usr/local/man/man1
@@ -52,11 +51,11 @@ function nodeinstall {
 		        rm -rf $TMP_FOLDER
 		        rm -rf $NODE_URL
 		else
-			echo "We could not determine your ARCH value try changing ARCH=`getconf LONG_BIT`"
+			echo "Could not determine your ARCH value try changing ARCH=$(getconf LONG_BIT)"
 		fi
 
 	else
-        	echo "We do not support your os yet"
+        	echo "Your OS is not supported (yet)"
 	fi
 
 }
@@ -73,21 +72,21 @@ function noderemove {
 
 function nodeupdate {
 	if [[ -f /usr/local/bin/npm && -f /usr/local/bin/node ]]; then
-		echo "Updating node and npm..."
+		echo "Updating Node and npm..."
 		npm install -g npm
 		npm cache clean -f
 		npm install -g n
 		n stable
 		nodeversion
 	else
-		echo "You can't update npm and node because you did not install them"
+		echo "Node and npm could not be updated because they are not installed"
 	fi
 }
 
 ARGS=("$@")
 
 if [[ "${ARGS[0]}" = "--install" ]]; then
-	echo "Installing latest node and npm..."
+	echo "Installing latest Node and npm..."
 	nodeinstall
 	nodeversion
 elif [[ "${ARGS[0]}" = "--update" ]]; then
