@@ -1,7 +1,7 @@
 # A node and npm installer
 This is an installer for node and npm with remove, install and update functions
 
-# Distro's tested
+# Distro's
 
 * Mac os x
 * Debian
