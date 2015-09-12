@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/brammittendorff/node-and-npm-installer.svg)](https://travis-ci.org/brammittendorff/node-and-npm-installer)
+
 # A node and npm installer
 This is an installer for node and npm with remove, install and update functions
 
