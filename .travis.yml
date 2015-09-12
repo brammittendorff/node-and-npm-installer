@@ -1,0 +1,8 @@
+language: bash
+install:
+  - ./node.sh
+script:
+  - ./node.sh
+notifications:
+  email: bram@nerd.host
+sudo: required
